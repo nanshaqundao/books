@@ -29,7 +29,7 @@ public class CustomBoot {
         if (context instanceof StandardContext) {
             StandardContext standardContext = (StandardContext) context;
 //            standardContext.setDefaultContextXml("D:\\tmp\\gfg\\web-mvc-core\\src\\main\\resources\\web.xml");
-            standardContext.setDefaultContextXml("D:\\github\\books\\02sjsguide\\gfg\\example\\src\\main\\webapp\\WEB-INF\\web.xml");
+            standardContext.setDefaultContextXml("D:\\github\\nanshaqundao\\books\\java\\book1\\mydemo\\example\\src\\main\\webapp\\WEB-INF\\web.xml");
             // 设置Servlet
 //            Wrapper wrapper = tomcat.addServlet("/", "FrontControllerServlet", new FrontControllerServlet());
             Wrapper wrapper = tomcat.addServlet("/","GoodBoyServlet",new GoodBoyServlet());

@@ -22,6 +22,11 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>GoodBoyServlet</servlet-name>
+        <url-pattern>/boy</url-pattern>
+    </servlet-mapping>
+
 
 
 </web-app>

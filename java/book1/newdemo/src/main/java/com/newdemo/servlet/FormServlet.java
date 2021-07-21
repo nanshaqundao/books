@@ -148,6 +148,43 @@ public class FormServlet extends HttpServlet {
         writer.println("<title>" + TITLE + "</title></head>");
         writer.println("</head>");
         writer.println("<body><h1>" + TITLE + "</h1>");
+
+
+        // query string
+        writer.println("<h4>Query String Value: " + request.getQueryString() + "</h4>");
+        // header names
+        Enumeration<String> headerNames = request.getHeaderNames();
+        writer.println("<table><tbody>");
+        writer.println("<tr>");
+        writer.println("<td>header names: " + "</td>");
+        writer.println("<td>header value: " + "</td>");
+        writer.println("</tr>");
+        while (headerNames.hasMoreElements()) {
+            String xx = headerNames.nextElement();
+            writer.println("<tr>");
+            writer.println("<td>" + xx + "</td>");
+            writer.println("<td>" + request.getHeader(xx) + "</td>");
+            writer.println("</tr>");
+        }
+        writer.println("</tbody></table>");
+
+        // parameter names
+        Enumeration<String> aparameterNames = request.getParameterNames();
+        writer.println("<table><tbody>");
+        writer.println("<tr>");
+        writer.println("<td>parameter names: " + "</td>");
+        writer.println("<td>parameter value: " + "</td>");
+        writer.println("</tr>");
+        while (aparameterNames.hasMoreElements()) {
+            String xx = aparameterNames.nextElement();
+            writer.println("<tr>");
+            writer.println("<td>" + xx + "</td>");
+            writer.println("<td>" + request.getParameter(xx) + "</td>");
+            writer.println("</tr>");
+        }
+        writer.println("</tbody></table>");
+        // above are added
+
         writer.println("<table>");
         writer.println("<tr>");
         writer.println("<td>Name:</td>");

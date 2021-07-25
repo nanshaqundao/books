@@ -24,7 +24,7 @@ public class CustomerService {
      * 获取客户列表
      */
     public List<Customer> getCustomerList() {
-        String sql = "SELECT * FROM demo.customer";
+        String sql = "SELECT * FROM customer";
         return DatabaseHelper.queryEntityList(Customer.class, sql);
 //        Connection connection = DatabaseHelper.getConnection();
 //        try {

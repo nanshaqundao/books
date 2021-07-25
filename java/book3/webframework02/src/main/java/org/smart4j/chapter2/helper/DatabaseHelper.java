@@ -160,7 +160,7 @@ public class DatabaseHelper {
             return false;
         }
 
-        String sql = "UPDATE " + getTableName(entityClass) + " SET ";
+        String sql = "UPDATE " + getTableName(entityClass).toLowerCase() + " SET ";
         StringBuilder columns = new StringBuilder("(");
 
         for (String fieldName : fieldMap.keySet()) {
@@ -184,7 +184,7 @@ public class DatabaseHelper {
         }
 
 
-        String sql = "INSERT INTO " + getTableName(entityClass);
+        String sql = "INSERT INTO " + getTableName(entityClass).toLowerCase();
         StringBuilder columns = new StringBuilder("(");
         StringBuilder values = new StringBuilder("(");
         for (String fieldName : fieldMap.keySet()) {
@@ -203,7 +203,7 @@ public class DatabaseHelper {
      * 删除实体
      */
     public static <T> boolean deleteEntity(Class<T> entityClass, long id) {
-        String sql = "DELETE FROM " + getTableName(entityClass) + " WHERE id = ?";
+        String sql = "DELETE FROM " + getTableName(entityClass).toLowerCase() + " WHERE id = ?";
         return executeUpdate(sql, id) == 1;
     }
 

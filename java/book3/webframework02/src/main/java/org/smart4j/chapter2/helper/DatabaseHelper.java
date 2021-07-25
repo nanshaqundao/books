@@ -1,5 +1,7 @@
 package org.smart4j.chapter2.helper;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.smart4j.chapter2.model.Customer;
@@ -20,6 +22,9 @@ public class DatabaseHelper {
     private static final String URL;
     private static final String USERNAME;
     private static final String PASSWORD;
+
+    private static final QueryRunner QUERY_RUNNER = new QueryRunner();
+    private static final ThreadLocal<Connection> CONNECTION_THREAD_LOCAL = new ThreadLocal<>();
 
     static {
         Properties config = PropsUtil.loadProps("config.properties");
@@ -53,5 +58,20 @@ public class DatabaseHelper {
                 LOGGER.error("close connection failure, ", e);
             }
         }
+    }
+
+    public static <T> List<T> queryEntityList(Class<T> entityClass, String sql, Object... parameters) {
+        List<T> entityList;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            entityList = QUERY_RUNNER.query(connection, sql, new BeanListHandler<T>(entityClass), parameters);
+        } catch (SQLException e) {
+            LOGGER.error("query entity list failure, ", e);
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return entityList;
     }
 }

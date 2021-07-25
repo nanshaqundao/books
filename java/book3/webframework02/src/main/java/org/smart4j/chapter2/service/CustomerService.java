@@ -39,31 +39,31 @@ public class CustomerService {
      */
     public Customer getCustomer(long id) {
         String sql = "SELECT * FROM customer WHERE id = ?";
-        //return DatabaseHelper.queryEntity(Customer.class, sql, id);
-        return null;
+        return DatabaseHelper.queryEntity(Customer.class, sql, id);
+//        return null;
     }
 
     /**
      * 创建客户
      */
     public boolean createCustomer(Map<String, Object> fieldMap) {
-        //return DatabaseHelper.insertEntity(Customer.class, fieldMap);
-        return false;
+        return DatabaseHelper.insertEntity(Customer.class, fieldMap);
+//        return false;
     }
 
     /**
      * 更新客户
      */
     public boolean updateCustomer(long id, Map<String, Object> fieldMap) {
-        //return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
-        return false;
+        return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
+//        return false;
     }
 
     /**
      * 删除客户
      */
     public boolean deleteCustomer(long id) {
-        //return DatabaseHelper.deleteEntity(Customer.class, id);
-        return false;
+        return DatabaseHelper.deleteEntity(Customer.class, id);
+//        return false;
     }
 }

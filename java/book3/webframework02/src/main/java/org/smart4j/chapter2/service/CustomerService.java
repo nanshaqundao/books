@@ -25,13 +25,13 @@ public class CustomerService {
      */
     public List<Customer> getCustomerList() {
         String sql = "SELECT * FROM demo.customer";
-        //return DatabaseHelper.queryEntityList(Customer.class, sql);
-        Connection connection = DatabaseHelper.getConnection();
-        try {
-            return DatabaseHelper.queryEntityList(Customer.class, sql);
-        } finally {
-            DatabaseHelper.closeConnection(connection);
-        }
+        return DatabaseHelper.queryEntityList(Customer.class, sql);
+//        Connection connection = DatabaseHelper.getConnection();
+//        try {
+//            return DatabaseHelper.queryEntityList(Customer.class, sql);
+//        } finally {
+//            DatabaseHelper.closeConnection(connection);
+//        }
     }
 
     /**

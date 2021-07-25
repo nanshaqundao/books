@@ -1,6 +1,7 @@
 package org.smart4j.chapter2.helper;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,37 +42,56 @@ public class DatabaseHelper {
     }
 
     public static Connection getConnection() {
-        Connection connection = null;
+        Connection connection = CONNECTION_THREAD_LOCAL.get();
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             LOGGER.error("get connection failure ", e);
+        } finally {
+            CONNECTION_THREAD_LOCAL.set(connection);
         }
         return connection;
     }
 
-    public static void closeConnection(Connection connection) {
+    public static void closeConnection() {
+        Connection connection = CONNECTION_THREAD_LOCAL.get();
         if (connection != null) {
             try {
                 connection.close();
             } catch (SQLException e) {
                 LOGGER.error("close connection failure, ", e);
+            } finally {
+                CONNECTION_THREAD_LOCAL.remove();
             }
         }
     }
 
     public static <T> List<T> queryEntityList(Class<T> entityClass, String sql, Object... parameters) {
         List<T> entityList;
-        Connection connection = null;
+
         try {
-            connection = getConnection();
+            Connection connection = getConnection();
             entityList = QUERY_RUNNER.query(connection, sql, new BeanListHandler<T>(entityClass), parameters);
         } catch (SQLException e) {
             LOGGER.error("query entity list failure, ", e);
             throw new RuntimeException(e);
         } finally {
-            closeConnection(connection);
+            closeConnection();
         }
         return entityList;
+    }
+
+    public static <T> T queryEntity(Class<T> entityClass, String sql, Object... parameters) {
+        T entity;
+        try {
+            Connection connection = getConnection();
+            entity = QUERY_RUNNER.query(connection, sql, new BeanHandler<T>(entityClass), parameters);
+        } catch (SQLException e) {
+            LOGGER.error("query entity execution failure, ", e);
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection();
+        }
+        return entity;
     }
 }

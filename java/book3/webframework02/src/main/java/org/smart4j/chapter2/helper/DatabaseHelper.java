@@ -55,13 +55,13 @@ public class DatabaseHelper {
 
     public static Connection getConnection() {
         Connection connection = CONNECTION_THREAD_LOCAL.get();
-        if(connection == null){
-            try{
+        if (connection == null) {
+            try {
                 connection = DATA_SOURCE.getConnection();
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 LOGGER.error("get connection failure with DATASOURCE, ", DATA_SOURCE, "with error", e);
                 throw new RuntimeException(e);
-            }finally {
+            } finally {
                 CONNECTION_THREAD_LOCAL.set(connection);
             }
         }
@@ -161,20 +161,18 @@ public class DatabaseHelper {
         }
 
         String sql = "UPDATE " + getTableName(entityClass).toLowerCase() + " SET ";
-        StringBuilder columns = new StringBuilder("(");
+        StringBuilder columns = new StringBuilder();
 
         for (String fieldName : fieldMap.keySet()) {
-            columns.append(fieldName).append("=?, ");
+            columns.append(fieldName).append(" = ?, ");
         }
 
-        columns.replace(columns.lastIndexOf(", "), columns.length(), ")");
-
-        sql = sql + columns.substring(0, columns.lastIndexOf(", ")) + " WHERE id=?";
+        sql = sql + columns.substring(0, columns.lastIndexOf(", ")) + " WHERE id = ?";
         List<Object> paramList = new ArrayList<>();
         paramList.addAll(fieldMap.values());
         paramList.add(id);
         Object[] params = paramList.toArray();
-        return executeUpdate(sql, paramList) == 1;
+        return executeUpdate(sql, params) == 1;
     }
 
     public static <T> boolean insertEntity(Class<T> entityClass, Map<String, Object> fieldMap) {

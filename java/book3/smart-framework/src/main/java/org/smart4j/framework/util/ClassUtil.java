@@ -43,6 +43,15 @@ public class ClassUtil {
         return cls;
     }
 
+    /**
+     * 加载类并默认初始化
+     * @param className
+     * @return
+     */
+    public static Class<?> loadClass(String className) {
+        return loadClass(className,true);
+
+    }
 
     /**
      * get all class under a package
@@ -129,4 +138,6 @@ public class ClassUtil {
 
 
     }
+
+
 }

@@ -1,4 +1,7 @@
-package demo;
+package demo.dynamicproxy;
+
+import demo.Greeting;
+import demo.GreetingImpl;
 
 import java.lang.reflect.Proxy;
 

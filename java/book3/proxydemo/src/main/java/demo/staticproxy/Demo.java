@@ -1,4 +1,6 @@
-package demo;
+package demo.staticproxy;
+
+import demo.Greeting;
 
 public class Demo {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package demo;
+package demo.cglib;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
@@ -15,7 +15,7 @@ public class CGLibProxy implements MethodInterceptor {
     }
 
     private CGLibProxy(){
-        
+
     }
 
     public <T> T getProxy(Class<T> cls) {

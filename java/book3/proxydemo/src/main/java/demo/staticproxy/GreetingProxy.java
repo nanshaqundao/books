@@ -1,4 +1,7 @@
-package demo;
+package demo.staticproxy;
+
+import demo.Greeting;
+import demo.GreetingImpl;
 
 /**
  * 静态代理

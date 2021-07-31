@@ -1,4 +1,7 @@
-package demo;
+package demo.cglib;
+
+import demo.Greeting;
+import demo.GreetingImpl;
 
 public class CGLibDemo {
     public static void main(String[] args) {

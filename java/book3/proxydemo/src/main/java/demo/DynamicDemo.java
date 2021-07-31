@@ -10,6 +10,8 @@ public class DynamicDemo {
 
         Hello helloProxy = (Hello) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(),dynamicProxy);
 
+        Hello helloProxy2 = dynamicProxy.getProxy();
         helloProxy.say("Jack");
+        helloProxy2.say("Luke");
     }
 }

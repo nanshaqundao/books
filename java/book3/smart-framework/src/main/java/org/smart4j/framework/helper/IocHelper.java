@@ -18,7 +18,8 @@ public final class IocHelper {
                 Object beanInstance = beanEntry.getValue();
 
                 //获取Bean类定义的所有成员变量 Bean Field
-                Field[] beanFields = beanClass.getFields();
+                // getFields好像无法返回Inject成员变量
+                Field[] beanFields = beanClass.getDeclaredFields();
 
                 //遍历以判断时候有Inject注解
                 for (Field beanField : beanFields) {

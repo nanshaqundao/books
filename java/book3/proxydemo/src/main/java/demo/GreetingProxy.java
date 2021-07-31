@@ -3,18 +3,18 @@ package demo;
 /**
  * 静态代理
  */
-public class HelloProxy implements Hello{
+public class GreetingProxy implements Greeting {
 
-    private Hello hello;
+    private Greeting greeting;
 
-    public HelloProxy(){
-        hello = new HelloImpl();
+    public GreetingProxy(){
+        greeting = new GreetingImpl();
     }
     @Override
-    public void say(String name) {
+    public void sayHello(String name) {
         before();
 
-        hello.say(name);
+        greeting.sayHello(name);
 
 
         after();

@@ -4,14 +4,14 @@ import java.lang.reflect.Proxy;
 
 public class DynamicDemo {
     public static void main(String[] args) {
-        Hello hello = new HelloImpl();
+        Greeting greeting = new GreetingImpl();
 
-        DynamicProxy dynamicProxy = new DynamicProxy(hello);
+        DynamicProxy dynamicProxy = new DynamicProxy(greeting);
 
-        Hello helloProxy = (Hello) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(),dynamicProxy);
+        Greeting greetingProxy = (Greeting) Proxy.newProxyInstance(greeting.getClass().getClassLoader(), greeting.getClass().getInterfaces(),dynamicProxy);
 
-        Hello helloProxy2 = dynamicProxy.getProxy();
-        helloProxy.say("Jack");
-        helloProxy2.say("Luke");
+        Greeting greetingProxy2 = dynamicProxy.getProxy();
+        greetingProxy.sayHello("Jack");
+        greetingProxy2.sayHello("Luke");
     }
 }

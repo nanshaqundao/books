@@ -1,5 +1,6 @@
 package demo;
 
+import demo.aspect.Tag;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,5 +18,10 @@ public class GreetingImpl implements Greeting {
 
     public void goodNight(String name) {
         System.out.println("Good Night, " + name);
+    }
+
+    @Tag
+    public void tagMorning(String name){
+        System.out.println("Tag Good Morning, "+ name);
     }
 }

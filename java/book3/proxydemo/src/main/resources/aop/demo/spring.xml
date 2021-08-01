@@ -30,4 +30,11 @@
         <property name="interceptorNames" value="greetingIntroAdvice"/> <!-- 拦截器名称，即增强类名称 Spring Bean的 id-->
         <property name="proxyTargetClass" value="true"/> <!-- 代理目标类（默认为false，代理接口）-->
     </bean>
+
+    <!--    Spring AOP 自动扫描 根据Bean名称自动生成代理,此方法只能匹配目标类无法匹配接口，因为我们无法知道Bean到底实现了多少接口-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="*Impl"/> <!--只为后缀是Impl的Bean生成代理 -->
+        <property name="interceptorNames" value="greetingAroundAdvice"/>
+        <property name="optimize" value="true"/> <!-- 对代理生成策略进行优化 -->
+    </bean>
 </beans>

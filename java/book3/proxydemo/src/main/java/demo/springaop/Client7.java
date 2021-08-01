@@ -1,16 +1,14 @@
 package demo.springaop;
 
-import demo.Greeting;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import demo.GreetingImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
-public class Client4 {
+public class Client7 {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("aop/demo/spring.xml");
-        Greeting greeting = (Greeting) context.getBean("greetingProxy");
-
-        greeting.sayHello("罗贯中");
+        GreetingImpl greetingImpl = (GreetingImpl) context.getBean("greetingImpl");
+        greetingImpl.sayHello("我已引入类增强");
+        greetingImpl.goodMorning("zhao yun");
     }
 }

@@ -9,7 +9,13 @@ import org.aspectj.lang.ProceedingJoinPoint;
 @Aspect
 @Component
 public class GreetingAspect {
-    @Around("execution(* demo.GreetingImpl.*(..))")
+    @Around("execution(* demo.GreetingImpl.good*(..))")
+
+    /**
+     * first * is return type
+     * second * is matching method
+     * (..) is for argument of methods, here it is any
+     */
     public Object around(ProceedingJoinPoint pjp) throws Throwable{
         before();
         Object result = pjp.proceed();

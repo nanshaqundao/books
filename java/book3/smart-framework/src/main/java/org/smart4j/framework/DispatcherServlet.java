@@ -25,7 +25,7 @@ import java.util.Map;
 public class DispatcherServlet extends HttpServlet {
 
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
+    public void init(ServletConfig servletConfig) {
         //初始化相关Helper类
         HelperLoader.init();
 

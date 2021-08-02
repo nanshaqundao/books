@@ -25,10 +25,10 @@ import java.util.Properties;
 public class DatabaseHelper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseHelper.class);
-    private static final String DRIVER;
-    private static final String URL;
-    private static final String USERNAME;
-    private static final String PASSWORD;
+//    private static final String DRIVER;
+//    private static final String URL;
+//    private static final String USERNAME;
+//    private static final String PASSWORD;
 
     private static final QueryRunner QUERY_RUNNER;
     private static final ThreadLocal<Connection> CONNECTION_THREAD_LOCAL;
@@ -38,23 +38,23 @@ public class DatabaseHelper {
         CONNECTION_THREAD_LOCAL = new ThreadLocal<>();
         QUERY_RUNNER = new QueryRunner();
 
-        Properties config = PropsUtil.loadProps("config.properties");
-        DRIVER = config.getProperty("jdbc.driver");
-        URL = config.getProperty("jdbc.url");
-        USERNAME = config.getProperty("jdbc.username");
-        PASSWORD = config.getProperty("jdbc.password");
+//        Properties config = PropsUtil.loadProps("config.properties");
+//        DRIVER = config.getProperty("jdbc.driver");
+//        URL = config.getProperty("jdbc.url");
+//        USERNAME = config.getProperty("jdbc.username");
+//        PASSWORD = config.getProperty("jdbc.password");
 
         DATA_SOURCE = new BasicDataSource();
-        DATA_SOURCE.setDriverClassName(DRIVER);
-        DATA_SOURCE.setUrl(URL);
-        DATA_SOURCE.setUsername(USERNAME);
-        DATA_SOURCE.setPassword(PASSWORD);
+        DATA_SOURCE.setDriverClassName(ConfigHelper.getJdbcDriver());
+        DATA_SOURCE.setUrl(ConfigHelper.getJdbcUrl());
+        DATA_SOURCE.setUsername(ConfigHelper.getJdbcUsername());
+        DATA_SOURCE.setPassword(ConfigHelper.getJdbcPassword());
 
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            LOGGER.error("can not load jdbc driver class, ", e);
-        }
+//        try {
+//            Class.forName(DRIVER);
+//        } catch (ClassNotFoundException e) {
+//            LOGGER.error("can not load jdbc driver class, ", e);
+//        }
     }
 
     public static Connection getConnection() {

@@ -1,4 +1,4 @@
-package org.smart4j.chapter3.aspect;
+package org.smart4j.chapter4.aspect;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

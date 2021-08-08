@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.smart4j.chapter4.model.Customer;
 import org.smart4j.framework.annotation.Service;
+import org.smart4j.framework.annotation.Transaction;
 import org.smart4j.framework.helper.DatabaseHelper;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class CustomerService {
     /**
      * 创建客户
      */
+    @Transaction
     public boolean createCustomer(Map<String, Object> fieldMap) {
         return DatabaseHelper.insertEntity(Customer.class, fieldMap);
 //        return false;
@@ -50,6 +52,7 @@ public class CustomerService {
     /**
      * 更新客户
      */
+    @Transaction
     public boolean updateCustomer(long id, Map<String, Object> fieldMap) {
         return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
 //        return false;
@@ -58,6 +61,7 @@ public class CustomerService {
     /**
      * 删除客户
      */
+    @Transaction
     public boolean deleteCustomer(long id) {
         return DatabaseHelper.deleteEntity(Customer.class, id);
 //        return false;

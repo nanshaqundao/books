@@ -45,8 +45,7 @@ public class CustomerController {
      * 进入 创建客户 界面
      */
     @Action("get:/customer_create")
-    public View create(Param param) {
-
+    public View create() {
         return new View("customer_create.jsp");
     }
 
@@ -57,9 +56,10 @@ public class CustomerController {
     public Data createSubmit(Param param) {
         Map<String, Object> fieldMap = param.getFieldMap();
         FileParam fileParam = param.getFile("photo");
-        boolean result = customerService.createCustomer(fieldMap,fileParam);
+        boolean result = customerService.createCustomer(fieldMap, fileParam);
         return new Data(result);
     }
+
 
     /**
      * 进入 编辑客户 界面

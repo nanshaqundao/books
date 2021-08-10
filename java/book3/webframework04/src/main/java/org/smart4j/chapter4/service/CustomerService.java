@@ -42,18 +42,19 @@ public class CustomerService {
 //        return null;
     }
 
-    /**
-     * 创建客户
-     */
-    @Transaction
-    public boolean createCustomer(Map<String, Object> fieldMap) {
-        return DatabaseHelper.insertEntity(Customer.class, fieldMap);
-//        return false;
-    }
+//    /**
+//     * 创建客户
+//     */
+//    @Transaction
+//    public boolean createCustomer(Map<String, Object> fieldMap) {
+//        return DatabaseHelper.insertEntity(Customer.class, fieldMap);
+////        return false;
+//    }
 
 
     /**
      * 创建客户
+     * refactored with file param
      */
     @Transaction
     public boolean createCustomer(Map<String, Object> fieldMap, FileParam fileParam) {

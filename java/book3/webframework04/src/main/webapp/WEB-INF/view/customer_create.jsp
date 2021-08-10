@@ -7,7 +7,7 @@
 
 <h1><a href="${BASE}/">首页</a> / <a href="${BASE}/customer">客户管理</a> / 创建客户</h1>
 
-<form id="customer_form" enctype="multipart/form-data">
+<form id="customer_form" enctype="multipart/form-data" method="post">
     <table>
         <tr>
             <td>客户名称：</td>
@@ -42,6 +42,7 @@
     </table>
     <button type="submit">保存</button>
 </form>
+
 <script src="${BASE}/asset/lib/jquery/jquery.min.js"></script>
 <script src="${BASE}/asset/lib/jquery-form/jquery.form.min.js"></script>
 <script>
@@ -57,5 +58,6 @@
         });
     });
 </script>
+
 </body>
 </html>

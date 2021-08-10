@@ -59,6 +59,8 @@ public class DispatcherServlet extends HttpServlet {
             Class<?> controllerClass = handler.getControllerClass();
             Object controllerBean = BeanHelper.getBean(controllerClass);
 
+            // 创建请求参数对象
+            // 以下注释部分为迭代之前的代码
             Param param;
             if (UploadHelper.isMultipart(request)) {
                 //文件请求

@@ -52,44 +52,44 @@
 </body>
 
 <script>
-    var json_data = [
-        // {
-        //     "userId": 1,
-        //     "id": 1,
-        //     "title": "三国演义",
-        //     "completed": false
-        // },
-        // {
-        //     "userId": 1,
-        //     "id": 2,
-        //     "title": "汉书",
-        //     "completed": false
-        // },
-        // {
-        //     "userId": 1,
-        //     "id": 3,
-        //     "title": "左传",
-        //     "completed": false
-        // },
-        // {
-        //     "userId": 1,
-        //     "id": 4,
-        //     "title": "资治通鉴",
-        //     "completed": true
-        // },
-        // {
-        //     "userId": 1,
-        //     "id": 5,
-        //     "title": "史记",
-        //     "completed": false
-        // }
-    ];
+    // var json_data = [
+    //     {
+    //         "id": 1,
+    //         "title": "三国演义",
+    //         "completed": false
+    //     },
+    //     {
+    //         "id": 2,
+    //         "title": "汉书",
+    //         "completed": false
+    //     },
+    //     {
+    //         "id": 3,
+    //         "title": "左传",
+    //         "completed": false
+    //     },
+    //     {
+    //         "id": 4,
+    //         "title": "资治通鉴",
+    //         "completed": true
+    //     },
+    //     {
+    //         "id": 5,
+    //         "title": "史记",
+    //         "completed": false
+    //     }
+    // ];
+    var json_data = JSON.parse(localStorage.getItem('json_data'));
     var myList = document.getElementById("todo-list");
 
     var counter = 0;
-    json_data.forEach(element => {
-        newTodo(element.title);
-    });
+    if (json_data) {
+        json_data.forEach(element => {
+            if (element) {
+                newTodo(element.title);
+            }
+        });
+    }
     registerEventListners();
 
     function registerEventListners() {
@@ -100,24 +100,32 @@
     }
 
 
-
     function deleteTodo() {
         var li = this.parentElement;
         myList.removeChild(li);
+        var json_temp = JSON.parse(localStorage.getItem('json_data'));
+        delete json_temp[li.dataset.id];
+
+        //how do we delete the item from json_temp without a unique identifier
+        localStorage.setItem('json_data', JSON.stringify(json_temp));
     }
-    function newTodo(todoTitle){
-        if(!todoTitle){
+
+    function newTodo(todoTitle, todoID) {
+        if (!todoTitle) {
+            //if empty
             todoTitle = document.getElementById("todoTitle").value;
+            var todoID = storeTodoLocal(todoTitle);
         }
 
         var listItem = document.createElement("li");
         listItem.id = ++counter;
+        listItem.dataset.id = todoID;
         listItem.appendChild(
             document.createTextNode(todoTitle)
         );
 
         var deleteLink = document.createElement("a");
-        deleteLink.href="#";
+        deleteLink.href = "#";
         deleteLink.className = "btn btn-sm btn-danger m-1 delete";
         deleteLink.appendChild(
             document.createTextNode("Delete")
@@ -127,6 +135,27 @@
         registerEventListners();
         console.log("new todo added" + listItem.childNodes[0].nodeValue);
         console.log("new todo added" + listItem.childNodes[0].textContent);
+    }
+
+    function storeTodoLocal(todoTitle) {
+        // retrieve and parse existing JSON from localstorage
+        var json_temp = JSON.parse(localStorage.getItem('json_data'));
+        if (!json_temp) {
+            json_temp = [];
+        }
+        var todoID = json_temp.length;
+        // add new todo object to JSON
+        json_temp.push({
+            "id": todoID,
+            "title": todoTitle,
+            "completed": false
+        });
+
+        // log updated JSON to console
+        console.log(json_temp);
+        //stringify updated JSON and store back in localStorage
+        localStorage.setItem('json_data', JSON.stringify(json_temp));
+        return todoID
     }
 
 

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Tutorial - Working with JSON</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+
+    <!--[if gte mso 9]>
+    <xml>
+        <mso:CustomDocumentProperties>
+            <mso:xd_Signature msdt:dt="string"></mso:xd_Signature>
+            <mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">
+                Williams, Peter
+            </mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+            <mso:Order msdt:dt="string">2057800.00000000</mso:Order>
+            <mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+            <mso:TemplateUrl msdt:dt="string"></mso:TemplateUrl>
+            <mso:xd_ProgID msdt:dt="string"></mso:xd_ProgID>
+            <mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">
+                Williams, Peter
+            </mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+            <mso:ContentTypeId msdt:dt="string">0x0101002F8B50CBB92E5F41911ED786D3B798D0</mso:ContentTypeId>
+            <mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+            <mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+        </mso:CustomDocumentProperties>
+    </xml><![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Javascript Todo App</h1>
+
+    <div class="row mt-4">
+        <div class="col-8">
+            <ul id="todo-list">
+
+            </ul>
+        </div>
+        <div class="col-4">
+            <form>
+                <input type="text" class="form-control" id="todoTitle" placeholder="Todo title...">
+                <button onclick="newTodo()" class="addBtn btn btn-sm btn-primary form-control mt-3">Add</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script>
+    var json_data = [
+        // {
+        //     "userId": 1,
+        //     "id": 1,
+        //     "title": "三国演义",
+        //     "completed": false
+        // },
+        // {
+        //     "userId": 1,
+        //     "id": 2,
+        //     "title": "汉书",
+        //     "completed": false
+        // },
+        // {
+        //     "userId": 1,
+        //     "id": 3,
+        //     "title": "左传",
+        //     "completed": false
+        // },
+        // {
+        //     "userId": 1,
+        //     "id": 4,
+        //     "title": "资治通鉴",
+        //     "completed": true
+        // },
+        // {
+        //     "userId": 1,
+        //     "id": 5,
+        //     "title": "史记",
+        //     "completed": false
+        // }
+    ];
+    var myList = document.getElementById("todo-list");
+
+    var counter = 0;
+    json_data.forEach(element => {
+        newTodo(element.title);
+    });
+    registerEventListners();
+
+    function registerEventListners() {
+        var closeButtons = document.getElementsByClassName("delete");
+        for (var i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].addEventListener('click', deleteTodo, false);
+        }
+    }
+
+
+
+    function deleteTodo() {
+        var li = this.parentElement;
+        myList.removeChild(li);
+    }
+    function newTodo(todoTitle){
+        if(!todoTitle){
+            todoTitle = document.getElementById("todoTitle").value;
+        }
+
+        var listItem = document.createElement("li");
+        listItem.id = ++counter;
+        listItem.appendChild(
+            document.createTextNode(todoTitle)
+        );
+
+        var deleteLink = document.createElement("a");
+        deleteLink.href="#";
+        deleteLink.className = "btn btn-sm btn-danger m-1 delete";
+        deleteLink.appendChild(
+            document.createTextNode("Delete")
+        );
+        listItem.appendChild(deleteLink);
+        myList.appendChild(listItem);
+        registerEventListners();
+        console.log("new todo added" + listItem.childNodes[0].nodeValue);
+        console.log("new todo added" + listItem.childNodes[0].textContent);
+    }
+
+
+</script>
+

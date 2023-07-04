@@ -1,0 +1,28 @@
+package com.example.demo.app02;
+
+public class Battery extends Product{
+
+    private final boolean rechargeable;
+    public Battery(String name, Double price, boolean rechargeable) {
+        super(name, price);
+        this.rechargeable = rechargeable;
+    }
+
+    public boolean isRechargeable() {
+        return rechargeable;
+    }
+
+
+    @Override
+    public String toString() {
+        var msg = super.toString() + ", rechargeable=%b";
+        return String.format(msg, this.rechargeable);
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Battery{" +
+//                "rechargeable=" + rechargeable +
+//                "} " + super.toString();
+//    }
+}

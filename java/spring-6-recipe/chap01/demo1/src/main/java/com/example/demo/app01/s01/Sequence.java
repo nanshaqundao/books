@@ -3,26 +3,23 @@ package com.example.demo.app01.s01;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Sequence {
+    private final AtomicInteger counter = new AtomicInteger();
+    private String prefix;
+    private String suffix;
 
-  private final String id;
-  private final String prefix;
-  private final String suffix;
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
 
-  public Sequence(String id, String prefix, String suffix) {
-    this.id = id;
-    this.prefix = prefix;
-    this.suffix = suffix;
-  }
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public void setInitial(int initial) {
+        this.counter.set(initial);
+    }
 
-  public String getPrefix() {
-    return prefix;
-  }
-
-  public String getSuffix() {
-    return suffix;
-  }
+    public String nextValue() {
+        return prefix + counter.getAndIncrement() + suffix;
+    }
 }

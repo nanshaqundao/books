@@ -1,6 +1,7 @@
-package com.example.demo.app01.s01;
+package com.example.demo.app01.s02;
 
-import org.springframework.stereotype.Component;
+
+
 
 public interface SequenceDao {
   Sequence getSequence(String sequenceId);

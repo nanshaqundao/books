@@ -24,3 +24,12 @@ jack4 has demonstrated a strong grasp of our system and a deep understanding of 
 jack4's willingness to help at any time is a testament to his commitment and positive attitude. This helpful nature not only accelerates our project timelines but also fosters a collaborative team environment. His proactive approach in resolving issues is commendable, as it significantly contributes to the smooth running of our operations and the timely delivery of our projects.
 
 Being a good team player, jack4 has shown that he can work well with others, offering support and sharing his knowledge, which enhances the overall productivity and skill level of the team.
+
+----
+jack5 has shown commendable adaptability and skill as a developer. His expertise in C++ and swift transition to using Java effectively is a testament to his learning agility and technical versatility. This ability to quickly adapt to different programming languages is highly valuable, especially in our dynamic tech environment.
+
+His extensive knowledge of the company’s systems, particularly the MTS, is notable. jack5's deep understanding of such a critical system, a knowledge area not widespread among the team, significantly enhances our team's capabilities and resilience in managing key operations.
+
+Working with jack5 on the ISIN library project was a constructive experience. Despite encountering differing opinions on code implementation, we navigated through these challenges effectively. The process of engaging in thorough discussions, showcasing code demos, and collaboratively deciding on the final output demonstrated jack5's teamwork, problem-solving skills, and open-mindedness.
+
+This experience with jack5 not only led to a successful project outcome but also fostered a collaborative work environment. It’s encouraging to see his commitment to finding common ground and working towards the best possible solutions.
